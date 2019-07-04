@@ -3,28 +3,56 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 
+const HELLO_MSG = `Olá, sou a skill do GDG Londrina. Posso falar informações sobre o grupo ou sobre os próximos eventos.
+    Você pode dizer algo como "Fale sobre o grupo" ou "liste os próximos eventos". Tente agora.`;
+const HELP_MSG = `Eu sou capaz falar sobre o GDG Londrina ou sobre os próximos eventos.
+    digar algo como "Fale sobre o grupo" ou "liste os próximos eventos". Tente agora.`;
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speechText = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        const speechText = HELLO_MSG;
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
             .getResponse();
     }
 };
-const HelloWorldIntentHandler = {
+const NextEventIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-            && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
+            && handlerInput.requestEnvelope.request.intent.name === 'NextEventIntent';
     },
     handle(handlerInput) {
-        const speechText = 'Hello World!';
+        const speechText = 'Implementar próximo evento';
         return handlerInput.responseBuilder
             .speak(speechText)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+const EventIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'EventIntent';
+    },
+    handle(handlerInput) {
+        const speechText = 'Implementar próximos eventos';
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .getResponse();
+    }
+};
+const AboutIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AboutIntent';
+    },
+    handle(handlerInput) {
+        const speechText = 'Implementar sobre o evento';
+        return handlerInput.responseBuilder
+            .speak(speechText)
             .getResponse();
     }
 };
@@ -34,7 +62,7 @@ const HelpIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speechText = 'You can say hello to me! How can I help?';
+        const speechText = HELP_MSG;
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -108,7 +136,9 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
+        NextEventIntentHandler,
+        EventIntentHandler,
+        AboutIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
