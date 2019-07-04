@@ -28,7 +28,10 @@ const NextEventIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'NextEventIntent';
     },
     handle(handlerInput) {
-        const speechText = 'Implementar próximo evento';
+        console.log(handlerInput.requestEnvelope.request.intent.slots.style.value);
+        // "resumido/consolidado VS completo"
+        const speechText = 'Implementar próximo evento - Passado o parâmetro ' +
+        handlerInput.requestEnvelope.request.intent.slots.style.value;
         return handlerInput.responseBuilder
             .speak(speechText)
             .getResponse();
@@ -52,10 +55,7 @@ const AboutIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AboutIntent';
     },
     handle(handlerInput) {
-        console.log(handlerInput.requestEnvelope.request.intent.slots.style.value);
-        // "resumido/consolidado VS completo"
-        const speechText = 'Implementar sobre o evento - Passado o parâmetro ' +
-        handlerInput.requestEnvelope.request.intent.slots.style.value;
+        const speechText = 'Implementar sobre o evento';
         return handlerInput.responseBuilder
             .speak(speechText)
             .getResponse();
