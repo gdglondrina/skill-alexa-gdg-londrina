@@ -3,7 +3,7 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 
-cont { getGroupDescription } = require('./meetup/api')
+const { getGroupDescription } = require('./meetup/api');
 
 const HELLO_MSG = `Olá, sou a skill do GDG Londrina. Posso falar informações sobre o grupo ou sobre os próximos eventos.
     Você pode dizer algo como "Fale sobre o grupo" ou "liste os próximos eventos". Tente agora.`;
