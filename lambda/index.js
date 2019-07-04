@@ -14,8 +14,8 @@ const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
-    handle(handlerInput) {
-        const speechText = HELLO_MSG;
+    async handle(handlerInput) {
+        const speechText = await getGroupDescription();
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
