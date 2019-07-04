@@ -50,7 +50,10 @@ const AboutIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AboutIntent';
     },
     handle(handlerInput) {
-        const speechText = 'Implementar sobre o evento';
+        console.log(handlerInput.requestEnvelope.request.intent.slots.style.value);
+        // "resumido/consolidado VS completo"
+        const speechText = 'Implementar sobre o evento - Passado o parâmetro ' +
+        handlerInput.requestEnvelope.request.intent.slots.style.value;
         return handlerInput.responseBuilder
             .speak(speechText)
             .getResponse();
