@@ -6,7 +6,7 @@ const Alexa = require('ask-sdk-core');
 const HELLO_MSG = `Olá, sou a skill do GDG Londrina. Posso falar informações sobre o grupo ou sobre os próximos eventos.
     Você pode dizer algo como "Fale sobre o grupo" ou "liste os próximos eventos". Tente agora.`;
 const HELP_MSG = `Eu sou capaz falar sobre o GDG Londrina ou sobre os próximos eventos.
-    diga algo como "liste os próximo evento". Tente agora.`;
+    diga algo como "fale próximo evento do grupo". Tente agora.`;
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
