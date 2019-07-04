@@ -1,0 +1,20 @@
+{
+    "manifest": {
+      "publishingInformation": {
+        "locales": {
+          "en-US": {
+            "name": "GDGLondrina"
+          }
+        }
+      },
+      "apis": {
+        "custom": {
+          "endpoint": {
+            "sourceDir": "lambda/custom",
+            "uri": ""
+          }
+        }
+      },
+      "manifestVersion": "1.0"
+    }
+  }
