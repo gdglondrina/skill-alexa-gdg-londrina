@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const axios = require('axios');
 const moment = require('moment');
 
@@ -24,8 +26,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 const BASE_API = 'https://api.meetup.com';
 const HTML_REGEX = /<[^>]*>?/gm
 
-const API_KEY = '1353b334552657122260144f66153a';
-
 const GROUP_INFO_ENDPOINT = 'gdg-londrina';
 const EVENTS_ENDPOINT = '2/events';
 
@@ -44,7 +44,7 @@ api.defaults.headers.common["User-Agent"] = USER_AGENT;
  * Recuperar descrição do GDG-Londrina 
  */
 async function getGroupDescription() {
-    let response = await api.get(`${BASE_API}/${GROUP_INFO_ENDPOINT}?key=${API_KEY}`);
+    let response = await api.get(`${BASE_API}/${GROUP_INFO_ENDPOINT}?key=${process.ENV.MEETUP_API_KEY}`);
     let groupDescription = response.data.description;
     if (groupDescription) {
         groupDescription = groupDescription.replace(HTML_REGEX, '');
@@ -58,7 +58,7 @@ async function getGroupDescription() {
  * 
  */
 async function getUpcomingEvents() {
-    let response = await api.get(`${BASE_API}/${EVENTS_ENDPOINT}?key=${API_KEY}&${GROUP_URLNAME_PARAM}&${STATUS_UPCOMING_PARAM}`);
+    let response = await api.get(`${BASE_API}/${EVENTS_ENDPOINT}?key=${process.ENV.MEETUP_API_KEY}&${GROUP_URLNAME_PARAM}&${STATUS_UPCOMING_PARAM}`);
 
     return response.data.results.map(e => {
         return {
