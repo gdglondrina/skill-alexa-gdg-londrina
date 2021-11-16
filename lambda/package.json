@@ -12,7 +12,7 @@
   "dependencies": {
     "ask-sdk-core": "^2.0.7",
     "ask-sdk-model": "^1.4.1",
-    "aws-sdk": "^2.326.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.21.1",
     "dotenv": "^8.0.0",
     "moment": "^2.24.0"
